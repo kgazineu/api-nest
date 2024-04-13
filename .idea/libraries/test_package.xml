@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="test-package">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/node_modules/thread-stream/test/dir with spaces/test-package.zip!/" />
+      <root url="jar://$PROJECT_DIR$/api-solid/node_modules/thread-stream/test/dir with spaces/test-package.zip!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
