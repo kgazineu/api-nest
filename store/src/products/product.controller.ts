@@ -7,30 +7,34 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { AtualizaProdutoDTO } from './dto/updateProduct.dto';
-import { ProductsRepository } from './products.repository';
+import { UpdateProductDTO } from './dto/updateProduct.dto';
+import { ProductsRepository } from './product.repository';
+import { ProductService } from './product.service';
 
 @Controller('/products')
 export class ProductsController {
-  constructor(private productsRepository: ProductsRepository) {}
+  constructor(
+    private productsRepository: ProductsRepository,
+    private productService: ProductService,
+  ) {}
 
   @Post()
   async createProduct(@Body() productData) {
-    this.productsRepository.save(productData);
+    this.productService.createProduct(productData);
     return productData;
   }
 
   @Get()
   async getProducts() {
-    return this.productsRepository.findAll();
+    return this.productService.findAllProducts();
   }
 
   @Put('/:id')
   async updateProduct(
     @Param('id') id: string,
-    @Body() dadosProduto: AtualizaProdutoDTO,
+    @Body() dadosProduto: UpdateProductDTO,
   ) {
-    const produtoAlterado = await this.productsRepository.update(
+    const produtoAlterado = await this.productService.updateProduct(
       id,
       dadosProduto,
     );
@@ -43,7 +47,7 @@ export class ProductsController {
 
   @Delete('/:id')
   async deleteProduct(@Param('id') id: string) {
-    const produtoRemovido = await this.productsRepository.delete(id);
+    const produtoRemovido = await this.productService.deleteProduct(id);
 
     return {
       mensagem: 'produto removido com sucesso',

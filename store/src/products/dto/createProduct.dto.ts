@@ -31,7 +31,7 @@ export class ImageProductDTO {
   description: string;
 }
 
-export class CriaProdutoDTO {
+export class CreateProductDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido' })
   userId: string;
 
